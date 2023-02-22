@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/*TODO: Test out your buttons here!*/}
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>Clean the World!</Text>
       <StatusBar style="auto" />
     </View>
   );
