@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, Text, Pressable, Alert} from 'react-native';
+import { StyleSheet, Text, Pressable, Alert } from 'react-native';
 /** Component for a general button to be used all over the app 
  *  @param text is the text on the button 
  *  @param handleClick is the function that called when the button is clicked
@@ -12,12 +12,26 @@ import {StyleSheet, Text, Pressable, Alert} from 'react-native';
   Below is a premade button without any props -- check out its syntax!
   Use the StyleSheet below to customize the button with classes.
 */
-const CustomButton = () => {
-return(
-  <Pressable onPress={() => Alert.alert('Simple Button pressed!')} style={styles.button1}> 
-    <Text>I'm a button!</Text>
-  </Pressable>
-)};
+
+interface Props {
+  text: string
+  handleClick: () => void
+  css: {
+    borderRadius: number;
+    width: number;
+    padding: number;
+    backgroundColor: string;
+    borderColor: string;
+  }
+  // any props that come into the component
+}
+const CustomButton = ({ text, handleClick, css }: Props) => {
+  return (
+    <Pressable onPress={handleClick} style={css}>
+      <Text>{text}</Text>
+    </Pressable>
+  )
+};
 
 const styles = StyleSheet.create({
   button1: {
