@@ -29,6 +29,10 @@ app.post("/", (req, res) => {
   res.send(req.body);
 });
 
+/**
+ * Create your route here!
+ */
+
 app.listen(process.env.PORT || 3000, async () => {
   console.log("✅ Server is up and running");
   await dbConnect();
