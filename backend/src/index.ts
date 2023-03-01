@@ -32,6 +32,13 @@ app.post("/", (req, res) => {
 /**
  * Create your route here!
  */
+app.get("/test", (req, res) => {
+  res.send("Good job :)");
+});
+
+app.post("/test", (req, res) => {
+  res.send(req.body);
+});
 
 app.listen(process.env.PORT || 3000, async () => {
   console.log("✅ Server is up and running");
