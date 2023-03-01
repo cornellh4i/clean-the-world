@@ -29,6 +29,13 @@ app.post("/", (req, res) => {
   res.send(req.body);
 });
 
+/**
+ * Created new route!
+ */
+app.get("/test/:name", (req, res) => {
+  res.send("Hello " + req.params.name + "! :)");
+});
+
 app.listen(process.env.PORT || 3000, async () => {
   console.log("✅ Server is up and running");
   await dbConnect();
