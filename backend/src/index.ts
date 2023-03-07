@@ -5,7 +5,7 @@ import customerRouter from "./customers/views";
 import swaggerUI from "swagger-ui-express";
 import spec from "../api-spec.json";
 import { dbConnect } from "./database";
-import createUser from "./functions"
+import createUser from "../firebase/firebaseFunctions"
 
 const app = express();
 
