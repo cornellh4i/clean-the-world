@@ -5,7 +5,6 @@ import customerRouter from "./customers/views";
 import swaggerUI from "swagger-ui-express";
 import spec from "../api-spec.json";
 import { dbConnect } from "./database";
-import createUser from "../firebase/firebaseFunctions"
 
 const app = express();
 
@@ -29,14 +28,6 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   res.send(req.body);
 });
-
-/**
- * Route for creating new user with phone number
- */
-app.get("/create/:number", (req,res) => {
-  createUser(req.params.number);
-  res.send("Created new user with number " + req.params.number);
-})
 
 /**
  * Create your route here!

@@ -19,7 +19,6 @@ const views_2 = __importDefault(require("./customers/views"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const api_spec_json_1 = __importDefault(require("../api-spec.json"));
 const database_1 = require("./database");
-const firebaseFunctions_1 = __importDefault(require("../firebase/firebaseFunctions"));
 const app = (0, express_1.default)();
 // Middleware to parse json request bodies
 app.use(body_parser_1.default.json());
@@ -37,13 +36,6 @@ app.get("/", (req, res) => {
 });
 app.post("/", (req, res) => {
     res.send(req.body);
-});
-/**
- * Route for creating new user with phone number
- */
-app.get("/create/:number", (req, res) => {
-    (0, firebaseFunctions_1.default)(req.params.number);
-    res.send("Created new user with number " + req.params.number);
 });
 /**
  * Create your route here!
