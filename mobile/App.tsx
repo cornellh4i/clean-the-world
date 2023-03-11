@@ -6,6 +6,8 @@ import { RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWith
 // import PhoneInput from "react-phone-input-2";
 import { FirebaseRecaptchaVerifier, FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
 import { getApp } from 'firebase/app';
+import { auth } from "../mobile/firebase/firebaseConfig.js"
+
 export default function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -18,7 +20,6 @@ export default function App() {
   const appVerificationDisabledForTesting = false;
 
   const app = getApp();
-  const auth = getAuth(app);
 
   const firebaseConfig = app ? app.options : undefined;
 
