@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native'
-import { RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWithCredential } from "firebase/auth";
-import { firebaseConfig, auth } from "../mobile/firebase/firebaseConfig.js"
+import { RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWithCredential, getAuth } from "firebase/auth";
 // import OtpInput from "otp-input-react";
 // import PhoneInput from "react-phone-input-2";
 import { FirebaseRecaptchaVerifier, FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
+import { getApp } from 'firebase/app';
 export default function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -16,6 +16,11 @@ export default function App() {
   const recaptchaVerifier: any = useRef(null);
   const attemptInvisibleVerification = false;
   const appVerificationDisabledForTesting = false;
+
+  const app = getApp();
+  const auth = getAuth(app);
+
+  const firebaseConfig = app ? app.options : undefined;
 
   // function generateRecaptcha() {
   //   if (!window.recaptchaVerifier) {
@@ -41,7 +46,7 @@ export default function App() {
           appVerificationDisabledForTesting={appVerificationDisabledForTesting}
         /> */}
         {/* <div id="recaptcha-container"></div> */}
-        {verificationId && (<FirebaseRecaptchaVerifierModal
+        {(<FirebaseRecaptchaVerifierModal
           ref={recaptchaVerifier}
           firebaseConfig={firebaseConfig}
           attemptInvisibleVerification={attemptInvisibleVerification}
@@ -70,12 +75,14 @@ export default function App() {
                     setLoading(true);
                     try {
                       const phoneProvider = new PhoneAuthProvider(auth);
-                      const verificationId = await phoneProvider.verifyPhoneNumber(
-                        // "+11234567890",
+                      console.log(verificationId);
+                      const newVerificationId = await phoneProvider.verifyPhoneNumber(
+                        // "+12039062861",
                         phoneNumber,
                         recaptchaVerifier.current
                       );
-                      setVerificationId(verificationId);
+                      console.log(newVerificationId);
+                      setVerificationId(newVerificationId);
                       setLoading(false);
                       setShowOTP(true);
                       // alert('Verification code has been sent to your phone.');
