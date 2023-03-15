@@ -1,22 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import CustomButton from './components/CustomButton/CustomButton';
+import { StyleSheet, View } from 'react-native'
+import { getApp } from 'firebase/app';
+import { auth } from '../mobile/firebase/firebaseConfig.js';
+import PhoneAuth from './components/CustomButton/PhoneAuth';
 
 export default function App() {
+  const app = getApp();
+
+  const firebaseConfig = app ? app.options : undefined;
+
   return (
     <View style={styles.container}>
-      {/*TODO: Test out your buttons here!*/}
-      <Text>Clean the World!</Text>
       <StatusBar style="auto" />
-    </View>
+      <PhoneAuth config={firebaseConfig} auth={auth} />
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fef4e1',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
