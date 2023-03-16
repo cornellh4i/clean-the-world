@@ -1,7 +1,8 @@
 // use Controllers here, just as we did in ../users/controllers.ts
 
 import { Router } from "express";
-import createUser from "./firebase-functions"
+import { createUser, checkClaim } from "./firebase-functions"
+// import checkClaim from "./firebase-functions"
 
 const userRouter = Router();
 
@@ -19,6 +20,14 @@ userRouter.post("/", (req, res) => {
 userRouter.get("/create/:number", (req,res) => {
   createUser(req.params.number);
   res.send("Created new user with number " + req.params.number);
+})
+
+/**
+ * Route for checking whether user has a dataEntry claim
+ */
+userRouter.get("/check/:uid", (req,res) => {
+  checkClaim(req.params.uid);
+  res.send("Data entry claim status of user " + req.params.uid + " printed to console.")
 })
 
 export default userRouter;
