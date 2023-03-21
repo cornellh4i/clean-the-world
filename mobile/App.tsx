@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { getApp } from 'firebase/app';
 import { auth } from '../mobile/firebase/firebaseConfig.js';
 import PhoneAuth from './components/CustomButton/PhoneAuth';
+import DataEntry from './components/CustomButton/DataEntry';
 
 export default function App() {
   const app = getApp();
@@ -12,7 +13,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <PhoneAuth config={firebaseConfig} auth={auth} />
+      {/* <PhoneAuth config={firebaseConfig} auth={auth} /> */}
+      <DataEntry />
     </View >
   );
 }
