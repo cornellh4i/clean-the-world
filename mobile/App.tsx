@@ -12,20 +12,23 @@ export default function App() {
   const firebaseConfig = app ? app.options : undefined;
 
   return (
-
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
         <PhoneAuth config={firebaseConfig} auth={auth} />
         <DataEntry />
-      </KeyboardAwareScrollView>
-
-    </View >
-
+      </View >
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: '#fef4e1',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   container: {
     flex: 1,
     backgroundColor: '#fef4e1',

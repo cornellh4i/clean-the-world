@@ -1,33 +1,25 @@
-import { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native'
-
+import { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 
 /** Component for a data entry
- *  @param //
 */
 const DataEntry = () => {
-  // const id auto generated; ObjectID
   const currDate = new Date();
   const currDay = currDate.getDate();
   const month = currDate.getMonth() + 1;
   const year = currDate.getFullYear();
-  const [date, setDate] = useState(month.toString() + "-" + currDay.toString() + "-" + year.toString()); // Date object
+  const [date, setDate] = useState(month.toString() + "/" + currDay.toString() + "/" + year.toString());
   const [fogNetID, setFogNetID] = useState("");
   const [clusterID, setClusterID] = useState("");
   const [fogNetModel, setFogNetModel] = useState("");
   const [waterCollected, setWaterCollected] = useState(0.0);
-  const [entry, setEntry]: any = useState(); // some way to store entry
 
-  // keyboard covers fields and submit button -> scroll? tap out of keyboard?
   return (
-
     <View style={styles.container}>
-      {/* {<Text style={styles.promptText}>Data Entry Created!</Text> 
-      } */}
       <Text style={styles.promptText}>Date</Text>
       <TextInput
         value={date}
-        style={styles.fieldBox} // auto date format; make sure date is valid
+        style={styles.fieldBox}
         placeholder="MM/DD/YYYY"
         autoFocus
         keyboardType="numbers-and-punctuation"
@@ -61,8 +53,9 @@ const DataEntry = () => {
       <TouchableOpacity style={styles.smallButton}
         onPress={async () => {
           try {
-            // Some way to store the data entry with id
-            alert("Done")
+            alert("Date: " + date + "\n" + "Fog Net ID: " + fogNetID + "\n"
+              + "Cluster ID: " + clusterID + "\n" + "Model Name: " + fogNetModel
+              + "\n" + "Water Collected: " + waterCollected);
           } catch (err) {
             alert("Field missing or invalid input");
           }
@@ -77,10 +70,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fef4e1',
-    // alignItems: 'center',
     justifyContent: 'center'
   },
   smallButton: {
+    alignItems: 'center',
     borderRadius: 8,
     padding: 10,
     margin: 10,
