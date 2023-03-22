@@ -1,12 +1,17 @@
 import { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native'
+
 
 /** Component for a data entry
  *  @param //
 */
 const DataEntry = () => {
   // const id auto generated; ObjectID
-  const [date, setDate] = useState(""); // Date object
+  const currDate = new Date();
+  const currDay = currDate.getDate();
+  const month = currDate.getMonth() + 1;
+  const year = currDate.getFullYear();
+  const [date, setDate] = useState(month.toString() + "-" + currDay.toString() + "-" + year.toString()); // Date object
   const [fogNetID, setFogNetID] = useState("");
   const [clusterID, setClusterID] = useState("");
   const [fogNetModel, setFogNetModel] = useState("");
@@ -15,11 +20,13 @@ const DataEntry = () => {
 
   // keyboard covers fields and submit button -> scroll? tap out of keyboard?
   return (
+
     <View style={styles.container}>
       {/* {<Text style={styles.promptText}>Data Entry Created!</Text> 
       } */}
       <Text style={styles.promptText}>Date</Text>
       <TextInput
+        value={date}
         style={styles.fieldBox} // auto date format; make sure date is valid
         placeholder="MM/DD/YYYY"
         autoFocus
