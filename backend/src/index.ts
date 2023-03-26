@@ -5,6 +5,7 @@ import customerRouter from "./customers/views";
 import swaggerUI from "swagger-ui-express";
 import spec from "../api-spec.json";
 import { dbConnect } from "./database";
+import { insertDoc } from "./database";
 
 const app = express();
 
@@ -32,6 +33,11 @@ app.post("/", (req, res) => {
 /**
  * Create your route here!
  */
+
+app.get("/insert", (req, res) => {
+  insertDoc();
+  res.send("Uploaded doc to MongoDB")
+})
 
 app.listen(process.env.PORT || 3000, async () => {
   console.log("✅ Server is up and running");
