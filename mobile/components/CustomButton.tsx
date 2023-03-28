@@ -16,7 +16,7 @@ import { StyleSheet, Text, Pressable, Alert } from 'react-native';
 type ButtonProps = {
   text: string,
   handleClick: () => {},
-  css: {},
+  css: object,
 }
 
 const CustomButton = (props: ButtonProps) => {
