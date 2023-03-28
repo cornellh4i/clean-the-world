@@ -18,8 +18,6 @@ export const dbDisconnect = async () => {
 };
 
 export function insertDoc() {
-  var db = mongoose.connection;
-
   const Doc = mongoose.model('Doc', new Schema({
     date: Number,
     fog_net_id: String,
@@ -27,7 +25,7 @@ export function insertDoc() {
     water_collected: Number
   }));
 
-  var doc1 = new Doc({
+  let doc1 = new Doc({
     date: 2023,
     fog_net_id: "clusterID_302942",
     cluster_id: "clusterID323",
