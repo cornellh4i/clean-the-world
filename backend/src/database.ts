@@ -25,7 +25,7 @@ export function insertDoc() {
     water_collected: Number
   }));
 
-  let doc1 = new Doc({
+  const doc1 = new Doc({
     date: 2023,
     fog_net_id: "clusterID_302942",
     cluster_id: "clusterID323",
