@@ -14,7 +14,7 @@ const DataEntry = () => {
   const month = (currDate.getMonth() + 1 < 10 ? '0' : '') + (currDate.getMonth() + 1);
   const day = (currDate.getDate() < 10 ? '0' : '') + currDate.getDate();
   const year = currDate.getFullYear();
-  const [date, setDate]: any = useState(month.toString() + "/" + day.toString() + "/" + year.toString());
+  const [date, setDate] = useState(month.toString() + "/" + day.toString() + "/" + year.toString());
 
   // Parse input date and convert to Date object
   function parseDate(dateStr: string) {
@@ -103,8 +103,7 @@ const DataEntry = () => {
               alert('Please Enter A Valid Amount of Water Collected');
               return;
             } else if (dateIsValid(date) === true) {
-              setDate(parseDate(date));
-              alert("Date: " + date + "\n" + "Fog Net ID: " + fogNetID + "\n"
+              alert("Date: " + parseDate(date) + "\n" + "Fog Net ID: " + fogNetID + "\n"
                 + "Cluster ID: " + clusterID + "\n" + "Model Name: " + fogNetModel
                 + "\n" + "Water Collected: " + waterCollected);
             }
