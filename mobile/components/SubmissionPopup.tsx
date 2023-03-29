@@ -1,9 +1,8 @@
-import * as React from 'react';
-import {useState} from 'react';
-import {Modal, StyleSheet, Text, Pressable, View} from 'react-native';
+import { useState } from 'react';
+import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
 
 const SubmissionPopup = () => {
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const showModal = () => {
     setModalVisible(true);
     setTimeout(() => {
