@@ -2,8 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native'
 import { getApp } from 'firebase/app';
 import { auth } from '../mobile/firebase/firebaseConfig.js';
-import PhoneAuth from './components/CustomButton/PhoneAuth';
-import SubmissionPopup from './components/SubmissionPopup';
 import PhoneAuth from './components/PhoneAuth';
 import DataEntry from './components/DataEntry';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
