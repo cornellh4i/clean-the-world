@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
+import checkboxImage from '../assets/checkbox-5.png'
 
 const SubmissionPopup = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -18,6 +19,7 @@ const SubmissionPopup = () => {
         visible={modalVisible}>
         <View style={styles.centeredView}>
           <Text style={styles.modalText}>Entry submitted!</Text>
+          <Image style={styles.checkIcon} source={checkboxImage}/>
         </View>
       </Modal>
       <Pressable
@@ -59,8 +61,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 24,
     textAlign: 'center',
-    top: '-35%'
+    top: 0
   },
+  checkIcon: {
+    maxWidth: '60%',
+    maxHeight: '60%',
+    resizeMode: 'contain',
+  }
 });
 
 export default SubmissionPopup;
