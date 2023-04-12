@@ -8,7 +8,7 @@ import { FirebaseOptions } from 'firebase/app';
  *  @param config is the firebaseConfig
  *  @param auth is the Auth instance associated with the provided Firebase App
 */
-const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) => {
+const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any, authenticated: boolean, }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [verificationId, setVerificationId]: any = useState();
@@ -21,7 +21,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) =>
   const textInput: any = useRef(null);
 
   return (
-    <View style={styles.container}>
+    <View style= {props.authenticated ? styles.container : styles.hidden} >
       <>
         {<FirebaseRecaptchaVerifierModal
           ref={recaptchaVerifier}
@@ -144,6 +144,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     padding: 8,
     backgroundColor: "#ffffffff"
+  },
+  hidden: {
+    display: 'none'
   }
 });
 

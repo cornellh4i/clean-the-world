@@ -5,10 +5,12 @@ import { auth } from '../mobile/firebase/firebaseConfig.js';
 import PhoneAuth from './components/PhoneAuth';
 import DataEntry from './components/DataEntry';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useState } from 'react';
 
 export default function App() {
-  const app = getApp();
+  const [authenticated, setAuthenticated] = useState(true);
 
+  const app = getApp();
   const firebaseConfig = app ? app.options : undefined;
 
   // Comment out PhoneAuth AFTER 'yarn run start' to avoid Firebase error
@@ -16,7 +18,7 @@ export default function App() {
     <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <StatusBar style="auto" />
-        {/* <PhoneAuth config={firebaseConfig} auth={auth} /> */}
+        <PhoneAuth config={firebaseConfig} auth={auth} authenticated={authenticated} />
         <DataEntry />
       </View >
     </KeyboardAwareScrollView>
