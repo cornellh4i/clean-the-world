@@ -8,8 +8,8 @@ const DataEntry = () => {
   const [clusterID, setClusterID] = useState("");
   const [fogNetModel, setFogNetModel] = useState("");
   const [waterCollected, setWaterCollected] = useState("");
-  const [showConfirm, setShowConfirm] = useState(false);
   const [editable, setEditable] = useState(true);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   // Set placeholder date as today's date
   const currDate = new Date();
@@ -54,11 +54,11 @@ const DataEntry = () => {
       {showConfirm ? (
         <View style={styles.confirmContainer}>
           <Text style={styles.headerText}>Are you sure this information is correct?</Text>
-          <Text style={[styles.promptText, { padding: 5 }]}>Date: {date}</Text>
-          <Text style={[styles.promptText, { padding: 5 }]}>Fog Net ID #: {fogNetID}</Text>
-          <Text style={[styles.promptText, { padding: 5 }]}>Cluster ID #: {clusterID}</Text>
-          <Text style={[styles.promptText, { padding: 5 }]}>Model Name: {fogNetModel}</Text>
-          <Text style={[styles.promptText, { padding: 5 }]}>Water Collected (L): {waterCollected}</Text>
+          <Text><Text style={[styles.promptText, { padding: 5 }]}>Date: </Text><Text style={styles.inputText}>{date}</Text></Text>
+          <Text><Text style={[styles.promptText, { padding: 5 }]}>Fog Net ID #: </Text><Text style={styles.inputText}>{fogNetID}</Text></Text>
+          <Text><Text style={[styles.promptText, { padding: 5 }]}>Cluster ID #: </Text><Text style={styles.inputText}>{clusterID}</Text></Text>
+          <Text><Text style={[styles.promptText, { padding: 5 }]}>Model Name: </Text><Text style={styles.inputText}>{fogNetModel}</Text></Text>
+          <Text><Text style={[styles.promptText, { padding: 5 }]}>Water Collected (L): </Text><Text style={styles.inputText}>{waterCollected}</Text></Text>
           <View style={styles.rowContainer}>
             <TouchableOpacity style={[styles.confirmButton, { backgroundColor: '#9fd4a3' }]}
               onPress={async () => {
@@ -141,8 +141,8 @@ const DataEntry = () => {
                 } else if (dateIsValid(date) === true) {
                   if (waterCollected.slice(-1) === '.')
                     setWaterCollected(waterCollected + '0')
-                  setShowConfirm(true);
                   setEditable(false);
+                  setShowConfirm(true);
                 }
               } catch (err) {
                 alert('Please complete all fields');
@@ -178,7 +178,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
     padding: 10,
-    margin: 10,
+    margin: 20,
+    marginLeft: 50,
+    marginRight: 50,
     backgroundColor: '#9fd4a3'
   },
   confirmButton: {
@@ -205,6 +207,10 @@ const styles = StyleSheet.create({
   promptText: {
     fontFamily: 'Verdana',
     fontWeight: 'bold',
+    fontSize: 17
+  },
+  inputText: {
+    fontFamily: 'Verdana',
     fontSize: 17
   },
   fieldBox: {
