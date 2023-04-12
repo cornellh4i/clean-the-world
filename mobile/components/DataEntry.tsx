@@ -128,23 +128,19 @@ const DataEntry = () => {
               try {
                 if (!date.trim()) {
                   alert('Please Enter Date');
-                  return;
                 } else if (dateIsValid(date) === false) {
                   alert('Invalid Date' + "\n" + 'Make sure date is MM/DD/YYYY');
-                  return;
                 } else if (!fogNetID.trim()) {
                   alert('Please Enter Fog Net ID');
-                  return;
                 } else if (!clusterID.trim()) {
                   alert('Please Enter Cluster ID');
-                  return;
                 } else if (!fogNetModel.trim()) {
                   alert('Please Enter Model Name');
-                  return;
-                } else if (isNaN(parseFloat(waterCollected))) {
+                } else if (isNaN(parseFloat(waterCollected)) || waterCollected.split('.').length > 2) {
                   alert('Please Enter a Valid Amount of Water Collected');
-                  return;
                 } else if (dateIsValid(date) === true) {
+                  if (waterCollected.slice(-1) === '.')
+                    setWaterCollected(waterCollected + '0')
                   setShowConfirm(true);
                   setEditable(false);
                 }
