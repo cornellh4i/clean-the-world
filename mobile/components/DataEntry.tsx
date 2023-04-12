@@ -7,7 +7,7 @@ const DataEntry = () => {
   const [fogNetID, setFogNetID] = useState("");
   const [clusterID, setClusterID] = useState("");
   const [fogNetModel, setFogNetModel] = useState("");
-  const [waterCollected, setWaterCollected] = useState(0.0);
+  const [waterCollected, setWaterCollected] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const [editable, setEditable] = useState(true);
 
@@ -21,8 +21,10 @@ const DataEntry = () => {
   // Parse input date and convert to Date object
   function parseDate(dateStr: string) {
     const [month, day, year] = dateStr.split('/');
-    const isoFormattedStr = `${year}-${month}-${day}`;
-    const date = new Date(isoFormattedStr);
+    // Note: JS Date object parsing can be unpredictable and is sensitive to
+    // how the string date is formatted (e.g. can be one day off due to time zone)
+    // Passing the parts in as below will ensure Date is hour 0 in the local time zone
+    const date = new Date(parseInt(year), parseInt(month), parseInt(day));
 
     return date
   }
@@ -70,11 +72,6 @@ const DataEntry = () => {
               onPress={async () => {
                 setShowConfirm(false);
                 setEditable(true);
-                setDate(month.toString() + "/" + day.toString() + "/" + year.toString());
-                setFogNetID("");
-                setClusterID("");
-                setFogNetModel("");
-                setWaterCollected(0.0);
               }}>
               <Text style={styles.buttonText}>No</Text>
             </TouchableOpacity>
@@ -95,6 +92,7 @@ const DataEntry = () => {
           />
           <Text style={styles.promptText}>Fog Net ID #:</Text>
           <TextInput
+            value={fogNetID}
             style={styles.fieldBox}
             placeholder="Fog Net ID"
             onChangeText={fogNetID => setFogNetID(fogNetID)}
@@ -102,6 +100,7 @@ const DataEntry = () => {
           />
           <Text style={styles.promptText}>Cluster ID #:</Text>
           <TextInput
+            value={clusterID}
             style={styles.fieldBox}
             placeholder="Cluster ID"
             onChangeText={clusterID => setClusterID(clusterID)}
@@ -109,6 +108,7 @@ const DataEntry = () => {
           />
           <Text style={styles.promptText}>Model Name:</Text>
           <TextInput
+            value={fogNetModel}
             style={styles.fieldBox}
             placeholder="Model Name"
             onChangeText={fogNetModel => setFogNetModel(fogNetModel)}
@@ -116,10 +116,11 @@ const DataEntry = () => {
           />
           <Text style={styles.promptText}>Water Collected (L):</Text>
           <TextInput
+            value={waterCollected}
             style={styles.fieldBox}
             placeholder="0.0"
             keyboardType="decimal-pad"
-            onChangeText={waterCollected => setWaterCollected(parseFloat(waterCollected))}
+            onChangeText={waterCollected => setWaterCollected(waterCollected)}
             editable={editable}
           />
           <TouchableOpacity style={styles.submitButton}
@@ -140,7 +141,7 @@ const DataEntry = () => {
                 } else if (!fogNetModel.trim()) {
                   alert('Please Enter Model Name');
                   return;
-                } else if (isNaN(waterCollected)) {
+                } else if (isNaN(parseFloat(waterCollected))) {
                   alert('Please Enter a Valid Amount of Water Collected');
                   return;
                 } else if (dateIsValid(date) === true) {
