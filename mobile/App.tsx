@@ -13,6 +13,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <PhoneAuth config={firebaseConfig} auth={auth} />
       <SubmissionPopup/>
     </View >
   );
