@@ -39,7 +39,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) =>
               <>
                 <Text style={styles.promptText}>Verify your phone number</Text>
                 <TextInput
-                  style={{ marginVertical: 10, fontSize: 17 }}
+                  style={styles.fieldBox}
                   placeholder="+1 999 999 9999"
                   autoFocus
                   autoComplete="tel"
@@ -77,7 +77,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) =>
               <>
                 <Text style={styles.promptText}>Enter your OTP</Text>
                 <TextInput
-                  style={{ marginVertical: 10, fontSize: 17 }}
+                  style={styles.fieldBox}
                   placeholder="123456"
                   autoFocus
                   autoComplete="sms-otp"
@@ -139,6 +139,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Verdana',
     fontSize: 15
   },
+  fieldBox: {
+    marginVertical: 10,
+    fontSize: 17,
+    padding: 8,
+    backgroundColor: "#ffffffff"
+  }
 });
 
 export default PhoneAuth;

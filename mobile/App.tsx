@@ -11,11 +11,12 @@ export default function App() {
 
   const firebaseConfig = app ? app.options : undefined;
 
+  // Comment out PhoneAuth AFTER 'yarn run start' to avoid Firebase error
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <PhoneAuth config={firebaseConfig} auth={auth} />
+        {/* <PhoneAuth config={firebaseConfig} auth={auth} /> */}
         <DataEntry />
       </View >
     </KeyboardAwareScrollView>
@@ -24,7 +25,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fef4e1',
     alignItems: 'center',
     justifyContent: 'center'
