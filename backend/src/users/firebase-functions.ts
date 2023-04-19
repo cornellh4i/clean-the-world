@@ -24,13 +24,3 @@ export function createUser(number: string) {
     console.log('Error creating new user: ', error)
   });
 }
-
-/**
- * Check whether a user has dataEntry claim given user id
- */
-export function checkClaim(uid: string) {
-  const user = admin.auth().getUser(uid)
-  .then((userRecord) => {
-    console.log(userRecord?.customClaims?.dataEntry ? true : false);
-  });
-}

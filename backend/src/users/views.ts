@@ -1,8 +1,8 @@
 // use Controllers here, just as we did in ../users/controllers.ts
 
 import { Router } from "express";
-import { createUser, checkClaim } from "./firebase-functions"
-// import checkClaim from "./firebase-functions"
+import { createUser } from "./firebase-functions"
+import { verifyToken } from "../utils/firebaseMiddleware"
 
 const userRouter = Router();
 
@@ -25,8 +25,7 @@ userRouter.get("/create/:number", (req,res) => {
 /**
  * Route for checking whether user has a dataEntry claim
  */
-userRouter.get("/check/:uid", (req,res) => {
-  checkClaim(req.params.uid);
+userRouter.get("/check/:uid", verifyToken, async (req,res) => {
   res.send("Data entry claim status of user " + req.params.uid + " printed to console.")
 })
 
