@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import SubmissionPopup from './SubmissionPopup';
 
 /** Component for a data entry
 */
@@ -10,6 +11,7 @@ const DataEntry = () => {
   const [waterCollected, setWaterCollected] = useState("");
   const [editable, setEditable] = useState(true);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   // Set placeholder date as today's date
   const currDate = new Date();
@@ -49,6 +51,14 @@ const DataEntry = () => {
     return d.toISOString().startsWith(isoFormattedStr);
   }
 
+  // Handle state for showing submission modal
+  const handleShowModal = () => {
+    setModalVisible(true);
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 3000);
+  }
+
   return (
     <View style={styles.container}>
       {showConfirm ? (
@@ -62,9 +72,7 @@ const DataEntry = () => {
           <View style={styles.rowContainer}>
             <TouchableOpacity style={[styles.confirmButton, { backgroundColor: '#9fd4a3' }]}
               onPress={async () => {
-                alert("Date: " + parseDate(date) + "\n" + "Fog Net ID: " + fogNetID + "\n"
-                  + "Cluster ID: " + clusterID + "\n" + "Model Name: " + fogNetModel
-                  + "\n" + "Water Collected: " + waterCollected);
+                handleShowModal()
               }}>
               <Text style={styles.buttonText}>Yes</Text>
             </TouchableOpacity>
@@ -75,6 +83,7 @@ const DataEntry = () => {
               }}>
               <Text style={styles.buttonText}>No</Text>
             </TouchableOpacity>
+            {modalVisible && <SubmissionPopup />}
           </View>
         </View>
       ) : (
