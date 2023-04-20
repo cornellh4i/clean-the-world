@@ -20,16 +20,16 @@ const DataEntry = () => {
   const year = currDate.getFullYear();
   const [date, setDate] = useState(month.toString() + "/" + day.toString() + "/" + year.toString());
 
-  // Parse input date and convert to Date object
-  function parseDate(dateStr: string) {
-    const [month, day, year] = dateStr.split('/');
-    // Note: JS Date object parsing can be unpredictable and is sensitive to
-    // how the string date is formatted (e.g. can be one day off due to time zone)
-    // Passing the parts in as below will ensure Date is hour 0 in the local time zone
-    const date = new Date(parseInt(year), parseInt(month), parseInt(day));
+  // // Parse input date and convert to Date object
+  // function parseDate(dateStr: string) {
+  //   const [month, day, year] = dateStr.split('/');
+  //   // Note: JS Date object parsing can be unpredictable and is sensitive to
+  //   // how the string date is formatted (e.g. can be one day off due to time zone)
+  //   // Passing the parts in as below will ensure Date is hour 0 in the local time zone
+  //   const date = new Date(parseInt(year), parseInt(month), parseInt(day));
 
-    return date
-  }
+  //   return date
+  // }
 
   // Validate date formatted as MM/DD/YYYY
   function dateIsValid(dateStr: string) {
