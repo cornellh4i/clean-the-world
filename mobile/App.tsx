@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { getApp } from 'firebase/app';
 import { auth } from '../mobile/firebase/firebaseConfig.js';
 import PhoneAuth from './components/PhoneAuth';
-import DataEntry from './components/DataEntry';
+import DataEntries from './pages/data-entry';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useState } from 'react';
 
@@ -18,7 +18,7 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style="auto" />
         <PhoneAuth config={firebaseConfig} auth={auth} authenticated={authenticated} />
-        <DataEntry />
+        <DataEntries />
       </View >
     </KeyboardAwareScrollView>
   );

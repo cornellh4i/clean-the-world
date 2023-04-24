@@ -1,32 +1,17 @@
-import { useState } from 'react';
-import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
+import { Modal, StyleSheet, Text, View, Image } from 'react-native';
 import checkboxImage from '../assets/checkbox-5.png'
 
 const SubmissionPopup = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const showModal = () => {
-    setModalVisible(true);
-    setTimeout(() => {
-      setModalVisible(false);
-    }, 3000);
-  };
-
   return (
     <View style={styles.centeredView}>
       <Modal
         animationType="slide"
-        transparent={false}
-        visible={modalVisible}>
+        transparent={false}>
         <View style={styles.centeredView}>
           <Text style={styles.modalText}>Entry submitted!</Text>
-          <Image style={styles.checkIcon} source={checkboxImage}/>
+          <Image style={styles.checkIcon} source={checkboxImage} />
         </View>
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => showModal()}>
-        <Text style={styles.textStyle}>Submit</Text>
-      </Pressable>
     </View>
   )
 }
@@ -38,23 +23,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
-  button: {
-    borderRadius: 20,
+  confirmButton: {
+    alignItems: 'center',
+    borderRadius: 8,
     padding: 10,
-    elevation: 2,
+    margin: 20,
+    marginLeft: 15,
+    marginRight: 15,
+    flex: 1
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
+  buttonText: {
+    fontFamily: 'Verdana',
+    fontSize: 18,
+    color: '#ffffff'
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textAlignVertical: 'top'
-  },
+  // buttonOpen: {
+  //   backgroundColor: '#F194FF',
+  // },
+  // buttonClose: {
+  //   backgroundColor: '#2196F3',
+  // },
   modalText: {
     marginBottom: 15,
     fontStyle: 'normal',
