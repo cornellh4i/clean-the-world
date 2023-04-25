@@ -3,3 +3,4 @@
 secrets/
 node_modules/
 firebaseConfig.js
+serviceAccountKey.json
