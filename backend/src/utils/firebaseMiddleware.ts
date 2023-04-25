@@ -13,6 +13,7 @@ export const verifyToken = (
   }
 
   const token = req.headers.authorization.split(" ")[1];
+  
   getAuth()
     .verifyIdToken(token)
     .then((claims) => {
