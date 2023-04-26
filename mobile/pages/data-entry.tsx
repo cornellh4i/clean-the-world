@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native'
 import DataEntry from '../components/DataEntry';
-import Welcome from './welcome';
 
 /** Component for Data Entry Page */
 const DataEntries = () => {
@@ -24,13 +23,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: '#FFFFFF'
-  },
-  backButton: {
-    padding: 15,
-    borderRadius: 20,
-    margin: 8,
-    marginLeft: 50,
-    marginRight: 50
   }
 });
 

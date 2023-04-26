@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import SubmissionPopup from './SubmissionPopup';
 import Dummy from '../pages/dummy';
 
-/** Component for a data entry
-*/
+/** Component for a data entry */
 const DataEntry = () => {
   const [fogNetID, setFogNetID] = useState("");
   const [clusterID, setClusterID] = useState("");
@@ -13,6 +12,7 @@ const DataEntry = () => {
   const [editable, setEditable] = useState(true);
   const [showConfirm, setShowConfirm] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [progress, setProgress] = useState(false);
 
   // Set placeholder date as today's date
   const currDate = new Date();
@@ -57,12 +57,12 @@ const DataEntry = () => {
     setModalVisible(true);
     setTimeout(() => {
       setModalVisible(false);
+      setShowConfirm(false);
+      setProgress(true);
     }, 3000);
   }
 
   // style so that text and textinput are inline
-  // after modal, route to dummy page
-  // fix confirmation page to modal transition (something like setShowConfirm(false)?)
   return (
     <View style={styles.container}>
       {showConfirm ? (
@@ -88,7 +88,7 @@ const DataEntry = () => {
           </TouchableOpacity>
           {modalVisible && <SubmissionPopup />}
         </View>
-      ) : (
+      ) : !progress ? (
         <View style={styles.container}>
           <Text style={[styles.headerText, { paddingLeft: 105, paddingRight: 105 }]}>New Entry</Text>
           <Text style={styles.promptText}>Date: </Text>
@@ -162,6 +162,8 @@ const DataEntry = () => {
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
+      ) : (
+        <Dummy />
       )}
     </View >
   );

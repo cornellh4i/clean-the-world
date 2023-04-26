@@ -6,7 +6,7 @@ const Dummy = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.promptText}>Done!</Text>
+      <Text style={styles.headerText}>Done!</Text>
     </View>
   );
 };
@@ -18,9 +18,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  promptText: {
-    fontSize: 20,
-    color: '#FFFFFF'
+  headerText: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    padding: 20,
+    color: '#FFFFFF',
+    textAlign: 'center'
   },
 });
 
