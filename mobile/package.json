@@ -17,6 +17,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
+    "react-native-datepicker": "^1.7.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
     "react-native-web": "~0.18.9",

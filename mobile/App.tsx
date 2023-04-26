@@ -6,6 +6,7 @@ import PhoneAuth from './components/PhoneAuth';
 import DataEntries from './pages/data-entry';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useState } from 'react';
+import Profile from './components/Profile';
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -18,7 +19,8 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style="auto" />
         <PhoneAuth config={firebaseConfig} auth={auth} authenticated={authenticated} />
-        <DataEntries />
+        {/* <DataEntries /> */}
+        <Profile />
       </View >
     </KeyboardAwareScrollView>
   );
