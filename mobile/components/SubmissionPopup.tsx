@@ -8,8 +8,9 @@ const SubmissionPopup = () => {
         animationType="slide"
         transparent={false}>
         <View style={styles.centeredView}>
-          <Text style={styles.modalText}>Entry submitted!</Text>
+          <Text style={styles.modalText}>Entry Submitted</Text>
           <Image style={styles.checkIcon} source={checkboxImage} />
+          <Text style={[styles.modalText, { top: '-15%' }]}>You've now logged 1,458 L total!</Text>
         </View>
       </Modal>
     </View>
@@ -20,41 +21,21 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
+    backgroundColor: '#261CA6'
   },
-  confirmButton: {
-    alignItems: 'center',
-    borderRadius: 8,
-    padding: 10,
-    margin: 20,
-    marginLeft: 15,
-    marginRight: 15,
-    flex: 1
-  },
-  buttonText: {
-    fontFamily: 'Verdana',
-    fontSize: 18,
-    color: '#ffffff'
-  },
-  // buttonOpen: {
-  //   backgroundColor: '#F194FF',
-  // },
-  // buttonClose: {
-  //   backgroundColor: '#2196F3',
-  // },
   modalText: {
-    marginBottom: 15,
     fontStyle: 'normal',
     fontWeight: '600',
     fontSize: 24,
     textAlign: 'center',
-    top: 0
+    color: '#FFFFFF'
   },
   checkIcon: {
-    maxWidth: '60%',
-    maxHeight: '60%',
-    resizeMode: 'contain',
+    alignSelf: 'center',
+    top: '-8%',
+    maxWidth: '55%',
+    maxHeight: '55%',
+    resizeMode: 'contain'
   }
 });
 

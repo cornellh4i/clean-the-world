@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import SubmissionPopup from './SubmissionPopup';
+import Dummy from '../pages/dummy';
 
 /** Component for a data entry
 */
@@ -59,6 +60,9 @@ const DataEntry = () => {
     }, 3000);
   }
 
+  // style so that text and textinput are inline
+  // after modal, route to dummy page
+  // fix confirmation page to modal transition (something like setShowConfirm(false)?)
   return (
     <View style={styles.container}>
       {showConfirm ? (
@@ -69,27 +73,25 @@ const DataEntry = () => {
           <Text><Text style={[styles.promptText, { padding: 5 }]}>Cluster ID #: </Text><Text style={styles.inputText}>{clusterID}</Text></Text>
           <Text><Text style={[styles.promptText, { padding: 5 }]}>Model Name: </Text><Text style={styles.inputText}>{fogNetModel}</Text></Text>
           <Text><Text style={[styles.promptText, { padding: 5 }]}>Water Collected (L): </Text><Text style={styles.inputText}>{waterCollected}</Text></Text>
-          <View style={styles.rowContainer}>
-            <TouchableOpacity style={[styles.confirmButton, { backgroundColor: '#9fd4a3' }]}
-              onPress={async () => {
-                handleShowModal()
-              }}>
-              <Text style={styles.buttonText}>Yes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.confirmButton, { backgroundColor: '#fe8e86' }]}
-              onPress={async () => {
-                setShowConfirm(false);
-                setEditable(true);
-              }}>
-              <Text style={styles.buttonText}>No</Text>
-            </TouchableOpacity>
-            {modalVisible && <SubmissionPopup />}
-          </View>
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#ffffff', marginTop: 20, marginLeft: 5, marginRight: 5 }]}
+            onPress={async () => {
+              handleShowModal();
+            }}>
+            <Text style={styles.buttonText}>Yes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#C4BFFF', margin: 8, marginLeft: 5, marginRight: 5 }]}
+            onPress={async () => {
+              setShowConfirm(false);
+              setEditable(true);
+            }}>
+            <Text style={styles.buttonText}>No</Text>
+          </TouchableOpacity>
+          {modalVisible && <SubmissionPopup />}
         </View>
       ) : (
         <View style={styles.container}>
           <Text style={[styles.headerText, { paddingLeft: 105, paddingRight: 105 }]}>New Entry</Text>
-          <Text style={styles.promptText}>Date:</Text>
+          <Text style={styles.promptText}>Date: </Text>
           <TextInput
             value={date}
             style={styles.fieldBox}
@@ -99,7 +101,7 @@ const DataEntry = () => {
             onChangeText={date => setDate(date)}
             editable={editable}
           />
-          <Text style={styles.promptText}>Fog Net ID #:</Text>
+          <Text style={styles.promptText}>Fog Net ID #: </Text>
           <TextInput
             value={fogNetID}
             style={styles.fieldBox}
@@ -107,7 +109,7 @@ const DataEntry = () => {
             onChangeText={fogNetID => setFogNetID(fogNetID)}
             editable={editable}
           />
-          <Text style={styles.promptText}>Cluster ID #:</Text>
+          <Text style={styles.promptText}>Cluster ID #: </Text>
           <TextInput
             value={clusterID}
             style={styles.fieldBox}
@@ -115,7 +117,7 @@ const DataEntry = () => {
             onChangeText={clusterID => setClusterID(clusterID)}
             editable={editable}
           />
-          <Text style={styles.promptText}>Model Name:</Text>
+          <Text style={styles.promptText}>Model Name: </Text>
           <TextInput
             value={fogNetModel}
             style={styles.fieldBox}
@@ -123,7 +125,7 @@ const DataEntry = () => {
             onChangeText={fogNetModel => setFogNetModel(fogNetModel)}
             editable={editable}
           />
-          <Text style={styles.promptText}>Water Collected (L):</Text>
+          <Text style={styles.promptText}>Water Collected (L): </Text>
           <TextInput
             value={waterCollected}
             style={styles.fieldBox}
@@ -132,7 +134,7 @@ const DataEntry = () => {
             onChangeText={waterCollected => setWaterCollected(waterCollected)}
             editable={editable}
           />
-          <TouchableOpacity style={styles.submitButton}
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#FFFFFF', margin: 20, marginLeft: 30, marginRight: 30 }]}
             onPress={async () => {
               try {
                 if (!date.trim()) {
@@ -168,65 +170,51 @@ const DataEntry = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fef4e1',
+    backgroundColor: '#261CA6',
     justifyContent: 'center',
     maxWidth: '89%'
   },
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 10
-  },
   confirmContainer: {
     flex: 1,
-    backgroundColor: '#fef4e1',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: '#261CA6',
+    justifyContent: 'center'
   },
-  submitButton: {
+  button: {
     alignItems: 'center',
-    borderRadius: 8,
-    padding: 10,
-    margin: 20,
-    marginLeft: 50,
-    marginRight: 50,
-    backgroundColor: '#9fd4a3'
-  },
-  confirmButton: {
-    alignItems: 'center',
-    borderRadius: 8,
-    padding: 10,
-    margin: 20,
-    marginLeft: 15,
-    marginRight: 15,
-    flex: 1
+    borderRadius: 20,
+    padding: 15
   },
   headerText: {
-    fontFamily: 'Verdana',
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 20,
-    padding: 20
+    fontSize: 24,
+    padding: 20,
+    color: '#FFFFFF'
   },
   buttonText: {
-    fontFamily: 'Verdana',
-    fontSize: 18,
-    color: '#ffffff'
+    fontSize: 20,
+    color: '#261CA6'
   },
   promptText: {
-    fontFamily: 'Verdana',
     fontWeight: 'bold',
-    fontSize: 17
+    fontSize: 20,
+    color: '#FFFFFF'
   },
   inputText: {
-    fontFamily: 'Verdana',
-    fontSize: 17
+    fontSize: 20,
+    color: '#FFFFFF'
   },
   fieldBox: {
+    borderRadius: 20,
     marginVertical: 10,
     fontSize: 18,
-    padding: 8,
-    backgroundColor: "#ffffffff"
+    padding: 10,
+    backgroundColor: "#FFFFFF"
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    textAlign: 'left',
+    alignItems: 'center'
   }
 });
 
