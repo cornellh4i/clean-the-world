@@ -8,7 +8,7 @@ import { FirebaseOptions } from 'firebase/app';
  *  @param config is the firebaseConfig
  *  @param auth is the Auth instance associated with the provided Firebase App
 */
-const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) => {
+const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any, authenticated: boolean, }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [verificationId, setVerificationId]: any = useState();
@@ -21,7 +21,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) =>
   const textInput: any = useRef(null);
 
   return (
-    <View style={styles.container}>
+    <View style= {props.authenticated ? styles.container : styles.hidden} >
       <>
         {<FirebaseRecaptchaVerifierModal
           ref={recaptchaVerifier}
@@ -39,7 +39,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) =>
               <>
                 <Text style={styles.promptText}>Verify your phone number</Text>
                 <TextInput
-                  style={{ marginVertical: 10, fontSize: 17 }}
+                  style={styles.fieldBox}
                   placeholder="+1 999 999 9999"
                   autoFocus
                   autoComplete="tel"
@@ -77,7 +77,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any }) =>
               <>
                 <Text style={styles.promptText}>Enter your OTP</Text>
                 <TextInput
-                  style={{ marginVertical: 10, fontSize: 17 }}
+                  style={styles.fieldBox}
                   placeholder="123456"
                   autoFocus
                   autoComplete="sms-otp"
@@ -139,6 +139,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Verdana',
     fontSize: 15
   },
+  fieldBox: {
+    marginVertical: 10,
+    fontSize: 17,
+    padding: 8,
+    backgroundColor: "#ffffffff"
+  },
+  hidden: {
+    display: 'none'
+  }
 });
 
 export default PhoneAuth;
