@@ -14,13 +14,19 @@
     "expo-status-bar": "~1.4.2",
     "expo-updates": "~0.15.6",
     "firebase": "^9.17.1",
-    "react": "18.1.0",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.3.0",
+    "reacr": "^1.0.0",
+    "react": "^18.2.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
+    "react-native-dropdown-picker": "^5.4.6",
+    "react-native-element-dropdown": "^2.9.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
     "react-native-web": "~0.18.9",
-    "react-native-webview": "11.23.1"
+    "react-native-webview": "11.23.1",
+    "react-select": "^5.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
