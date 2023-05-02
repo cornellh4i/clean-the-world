@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native'
-import DataEntry from '../components/DataEntry';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ModalScreenList } from '../router';
 import { Screen } from '../components/Screen';
@@ -10,11 +9,22 @@ interface Props {
   navigation: StackNavigationProp<ModalScreenList>;
 }
 
-const DataEntries = ({ navigation }: Props) => {
+const Home = ({ navigation }: Props) => {
+  const onPressLoginPage = () => navigation.navigate('Welcome');
+
   return (
-    <Screen rightAction="back">
-      <StatusBar style="auto" />
-      <DataEntry />
+    <Screen>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <Text style={styles.headerText}> Clean the World</Text>
+        <TouchableOpacity style={[styles.authButton, { backgroundColor: '#ffffff' }]}
+          onPress={onPressLoginPage}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.authButton, { backgroundColor: '#C4BFFF' }]}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
     </Screen >
   );
 };
@@ -46,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DataEntries;
+export default Home;

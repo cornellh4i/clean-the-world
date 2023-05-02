@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
+import { Screen } from '../components/Screen';
 
 /** Component for Dummy Page */
 const Dummy = () => {
   return (
-    <View style={styles.container}>
+    <Screen>
       <StatusBar style="auto" />
       <Text style={styles.headerText}>Done!</Text>
-    </View>
+    </Screen>
   );
 };
 

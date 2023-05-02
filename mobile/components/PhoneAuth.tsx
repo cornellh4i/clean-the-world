@@ -41,7 +41,6 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any, auth
                 <TextInput
                   style={styles.fieldBox}
                   placeholder="+1 999 999 9999"
-                  autoFocus
                   autoComplete="tel"
                   keyboardType="phone-pad"
                   textContentType="telephoneNumber"
