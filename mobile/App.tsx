@@ -8,6 +8,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useState } from "react";
 import Profile from "./pages/Profile";
 import NavBar from "./components/Navbar";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -16,6 +17,7 @@ export default function App() {
   const firebaseConfig = app ? app.options : undefined;
 
   return (
+    <NavigationContainer>
     <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <StatusBar style="auto" />
@@ -28,6 +30,7 @@ export default function App() {
         <NavBar />
       </View>
     </KeyboardAwareScrollView>
+    </NavigationContainer>
   );
 }
 
