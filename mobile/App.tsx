@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { getApp } from 'firebase/app';
 import { auth } from '../mobile/firebase/firebaseConfig.js';
 import PhoneAuth from './components/PhoneAuth';
