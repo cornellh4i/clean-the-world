@@ -7,6 +7,7 @@ import DataEntries from "./pages/data-entry";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react";
 import Profile from "./pages/Profile";
+import NavBar from "./components/Navbar";
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -23,7 +24,8 @@ export default function App() {
           auth={auth}
           authenticated={authenticated}
         />
-        <Profile />
+        {/* <Profile /> */}
+        <NavBar />
       </View>
     </KeyboardAwareScrollView>
   );
