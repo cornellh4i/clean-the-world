@@ -21,7 +21,7 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any, auth
   const textInput: any = useRef(null);
 
   return (
-    <View style= {props.authenticated ? styles.container : styles.hidden} >
+    <View style={props.authenticated ? styles.container : styles.hidden} >
       <>
         {<FirebaseRecaptchaVerifierModal
           ref={recaptchaVerifier}
@@ -41,7 +41,6 @@ const PhoneAuth = (props: { config: FirebaseOptions | undefined, auth: any, auth
                 <TextInput
                   style={styles.fieldBox}
                   placeholder="+1 999 999 9999"
-                  autoFocus
                   autoComplete="tel"
                   keyboardType="phone-pad"
                   textContentType="telephoneNumber"
@@ -122,21 +121,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     margin: 10,
-    backgroundColor: '#9fd4a3',
-    borderColor: '#f0f0f0'
+    backgroundColor: '#9fd4a3'
   },
   buttonText: {
-    fontFamily: 'Verdana',
     fontSize: 15,
     color: '#ffffff'
   },
   promptText: {
-    fontFamily: 'Verdana',
     fontSize: 15
   },
   titleText: {
     padding: 10,
-    fontFamily: 'Verdana',
     fontSize: 15
   },
   fieldBox: {
