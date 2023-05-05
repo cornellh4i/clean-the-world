@@ -1,3 +1,4 @@
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native'
 import { getApp } from 'firebase/app';
