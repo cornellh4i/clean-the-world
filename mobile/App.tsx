@@ -18,18 +18,23 @@ export default function App() {
 
   return (
     <NavigationContainer>
-    <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <PhoneAuth
-          config={firebaseConfig}
-          auth={auth}
-          authenticated={authenticated}
-        />
-        {/* <Profile /> */}
-        <NavBar />
-      </View>
-    </KeyboardAwareScrollView>
+      <NavBar />
+      <PhoneAuth
+        config={firebaseConfig}
+        auth={auth}
+        authenticated={authenticated}
+      />
+      {/* <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.container}>
+          <StatusBar style="auto" />
+          <PhoneAuth
+            config={firebaseConfig}
+            auth={auth}
+            authenticated={authenticated}
+          />
+          <NavBar />
+        </View>
+      </KeyboardAwareScrollView> */}
     </NavigationContainer>
   );
 }
@@ -46,5 +51,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#261CA6",
     alignItems: "center",
     justifyContent: "center",
+  },
+  navBar: {
+    backgroundColor: "#261CA6",
   },
 });

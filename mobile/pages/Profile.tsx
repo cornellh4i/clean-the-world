@@ -28,137 +28,145 @@ const Profile = () => {
   const today = day.toString() + "-" + month.toString() + "-" + year.toString();
 
   return (
-    <View style={styles.spaceContainer}>
-      <View>
-        <Text style={styles.headerText}>User Profile Information</Text>
-      </View>
-      <View style={styles.container}>
-        <View style={styles.rowContainer}>
-          <View style={styles.boxContainer}>
-            <Text style={styles.promptText}>First Name</Text>
-          </View>
-          <View style={styles.boxContainer}>
-            <TextInput
-              value={firstName}
-              autoFocus
-              editable={editable}
-              onChangeText={(firstName) => setFirstName(firstName)}
-              style={editable ? styles.fieldBox : styles.uneditable}
-            />
-          </View>
+    <View style={styles.page}>
+      <View style={styles.spaceContainer}>
+        <View>
+          <Text style={styles.headerText}>User Profile Information</Text>
         </View>
-        <View style={styles.rowContainer}>
-          <View style={styles.boxContainer}>
-            <Text style={styles.promptText}>Last Name</Text>
-          </View>
-          <View style={styles.boxContainer}>
-            <TextInput
-              value={lastName}
-              autoFocus
-              editable={editable}
-              onChangeText={(lastName) => setLastName(lastName)}
-              style={editable ? styles.fieldBox : styles.uneditable}
-            />
-          </View>
-        </View>
-        <View style={styles.rowContainer}>
-          <View style={styles.boxContainer}>
-            <Text style={styles.promptText}>Date of Birth</Text>
-            <Text style={styles.subtext}>dd/mm/yyyy</Text>
-          </View>
-          <View style={styles.boxContainer}>
-            {!editable ? (
+        <View style={styles.container}>
+          <View style={styles.rowContainer}>
+            <View style={styles.boxContainer}>
+              <Text style={styles.promptText}>First Name</Text>
+            </View>
+            <View style={styles.boxContainer}>
               <TextInput
-                value={date}
+                value={firstName}
+                autoFocus
+                editable={editable}
+                onChangeText={(firstName) => setFirstName(firstName)}
                 style={editable ? styles.fieldBox : styles.uneditable}
-                editable={false}
               />
-            ) : (
-              <SafeAreaView>
-                <View>
-                  <DatePicker
-                    date={date}
-                    selected={date}
-                    mode="date"
-                    placeholder="select date"
-                    format="DD/MM/YYYY"
-                    minDate="01-01-1900"
-                    maxDate={today}
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                      dateIcon: {
-                        position: "absolute",
-                        right: -5,
-                        top: 4,
-                        marginLeft: 0,
-                      },
-                      dateInput: {
-                        borderColor: "white",
-                        alignItems: "flex-start",
-                        borderWidth: 0,
-                        borderBottomWidth: 1,
-                      },
-                      placeholderText: {
-                        fontSize: 17,
-                        color: "white",
-                      },
-                      dateText: {
-                        fontSize: 17,
-                        color: "white",
-                      },
-                    }}
-                    onDateChange={(date: any) => {
-                      setDate(date);
-                    }}
-                  />
-                </View>
-              </SafeAreaView>
-            )}
+            </View>
+          </View>
+          <View style={styles.rowContainer}>
+            <View style={styles.boxContainer}>
+              <Text style={styles.promptText}>Last Name</Text>
+            </View>
+            <View style={styles.boxContainer}>
+              <TextInput
+                value={lastName}
+                autoFocus
+                editable={editable}
+                onChangeText={(lastName) => setLastName(lastName)}
+                style={editable ? styles.fieldBox : styles.uneditable}
+              />
+            </View>
+          </View>
+          <View style={styles.rowContainer}>
+            <View style={styles.boxContainer}>
+              <Text style={styles.promptText}>Date of Birth</Text>
+              <Text style={styles.subtext}>dd/mm/yyyy</Text>
+            </View>
+            <View style={styles.boxContainer}>
+              {!editable ? (
+                <TextInput
+                  value={date}
+                  style={editable ? styles.fieldBox : styles.uneditable}
+                  editable={false}
+                />
+              ) : (
+                <SafeAreaView>
+                  <View>
+                    <DatePicker
+                      date={date}
+                      selected={date}
+                      mode="date"
+                      placeholder="select date"
+                      format="DD/MM/YYYY"
+                      minDate="01-01-1900"
+                      maxDate={today}
+                      confirmBtnText="Confirm"
+                      cancelBtnText="Cancel"
+                      customStyles={{
+                        dateIcon: {
+                          position: "absolute",
+                          right: -5,
+                          top: 4,
+                          marginLeft: 0,
+                        },
+                        dateInput: {
+                          borderColor: "white",
+                          alignItems: "flex-start",
+                          borderWidth: 0,
+                          borderBottomWidth: 1,
+                        },
+                        placeholderText: {
+                          fontSize: 17,
+                          color: "white",
+                        },
+                        dateText: {
+                          fontSize: 17,
+                          color: "white",
+                        },
+                      }}
+                      onDateChange={(date: any) => {
+                        setDate(date);
+                      }}
+                    />
+                  </View>
+                </SafeAreaView>
+              )}
+            </View>
+          </View>
+          <View style={styles.rowContainer}>
+            <View style={styles.boxContainer}>
+              <Text style={styles.promptText}>Cluster ID #</Text>
+            </View>
+            <View style={styles.boxContainer}>
+              <TextInput
+                value={clusterID}
+                autoFocus
+                editable={editable}
+                onChangeText={(clusterID) => setClusterID(clusterID)}
+                style={editable ? styles.fieldBox : styles.uneditable}
+              />
+            </View>
           </View>
         </View>
-        <View style={styles.rowContainer}>
-          <View style={styles.boxContainer}>
-            <Text style={styles.promptText}>Cluster ID #</Text>
-          </View>
-          <View style={styles.boxContainer}>
-            <TextInput
-              value={clusterID}
-              autoFocus
-              editable={editable}
-              onChangeText={(clusterID) => setClusterID(clusterID)}
-              style={editable ? styles.fieldBox : styles.uneditable}
-            />
-          </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.saveButton}
+            onPress={async () => {
+              setEditable(!editable);
+            }}
+          >
+            <Text style={styles.buttonText}>
+              {editable ? "Save Changes" : "Edit Information"}
+            </Text>
+          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={async () => {
-            setEditable(!editable);
-          }}
-        >
-          <Text style={styles.buttonText}>
-            {editable ? "Save Changes" : "Edit Information"}
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  page: {
+    backgroundColor: "#261CA6",
+    height: "100%",
+    justifyContent: "center",
+  },
   container: {
     backgroundColor: "#261CA6",
     justifyContent: "center",
-    maxWidth: "89%",
     flexDirection: "column",
     marginVertical: 20,
   },
   spaceContainer: {
     flexDirection: "column",
-    padding: 20,
+    backgroundColor: "#261CA6",
+    justifyContent: "center",
+    paddingHorizontal: 40,
   },
   buttonContainer: {
     alignItems: "center",

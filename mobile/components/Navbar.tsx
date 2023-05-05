@@ -6,7 +6,6 @@ const Tab = createBottomTabNavigator();
 
 const NavBar = () => {
   return (
-    
     <Tab.Navigator>
       <Tab.Screen name="Data Entry" component={DataEntries} />
       <Tab.Screen name="Profile" component={Profile} />

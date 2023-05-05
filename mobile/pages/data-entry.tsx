@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native'
-import DataEntry from '../components/DataEntry';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import DataEntry from "../components/DataEntry";
 
 /** Component for Data Entry Page */
 const DataEntries = () => {
@@ -8,17 +8,17 @@ const DataEntries = () => {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <DataEntry />
-    </View >
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fef4e1',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+    backgroundColor: "#261CA6",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default DataEntries;
