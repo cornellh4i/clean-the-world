@@ -1,24 +1,18 @@
+
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import DataEntry from "../components/DataEntry";
+import DataEntry from '../components/DataEntry';
+import { Screen } from '../components/Screen';
 
-/** Component for Data Entry Page */
+/** Component for Data Entry flow */
 const DataEntries = () => {
   return (
-    <View style={styles.container}>
+    <Screen rightAction="back">
       <StatusBar style="auto" />
       <DataEntry />
-    </View>
+    </Screen >
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#261CA6",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default DataEntries;
