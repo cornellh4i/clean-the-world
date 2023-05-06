@@ -12,8 +12,15 @@ import DatePicker from "react-native-datepicker";
 import { LogBox } from "react-native";
 LogBox.ignoreAllLogs(true);
 
-const Profile = () => {
+interface Props {
+  setUpFirstName: React.Dispatch<React.SetStateAction<string>>;
+  upFirstName: string;
+}
+
+
+const Profile = ({setUpFirstName, upFirstName} : Props) => {
   const [firstName, setFirstName] = useState("Adriana");
+  
   const [lastName, setLastName] = useState("Sanchez");
   const [clusterID, setClusterID] = useState("734");
 
@@ -40,10 +47,10 @@ const Profile = () => {
             </View>
             <View style={styles.boxContainer}>
               <TextInput
-                value={firstName}
+                value={editable ? firstName : upFirstName}
                 autoFocus
                 editable={editable}
-                onChangeText={(firstName) => setFirstName(firstName)}
+                onChangeText={(firstName) => {setFirstName(firstName); console.log(firstName)}}
                 style={editable ? styles.fieldBox : styles.uneditable}
               />
             </View>
@@ -136,7 +143,14 @@ const Profile = () => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.saveButton}
-            onPress={async () => {
+            onPress={() => {
+              if (editable) {
+                setUpFirstName(firstName);
+                console.log(firstName);
+              }
+              else {
+                setFirstName(upFirstName);
+              }
               setEditable(!editable);
             }}
           >

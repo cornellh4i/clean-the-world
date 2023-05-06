@@ -1,4 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import Home from './pages/home';
 import Welcome from './pages/welcome';
@@ -20,11 +21,26 @@ export type ModalScreenList = {
   Dummy: undefined;
 };
 
-export const router = () => {
+interface Props {
+  navigation: StackNavigationProp<ModalScreenList>;
+}
+
+interface firstNameProp {
+  firstName: string;
+}
+
+
+export function DataRouter({ firstName }: firstNameProp) {
+  const WelcomePage = ({navigation}: Props) => {
+    return (
+     <Welcome navigation = {navigation} firstName={firstName}/>
+    );
+  };
+
   return (
     <Root.Navigator screenOptions={{ headerShown: false }}>
       <Root.Screen name="Home" component={Home} />
-      <Root.Screen name="Welcome" component={Welcome} />
+      <Root.Screen name="Welcome" component={WelcomePage} />
       <ModalStack.Screen name="DataEntries" component={DataEntries} />
       <ModalStack.Screen name="Dummy" component={Dummy} />
     </Root.Navigator>

@@ -7,15 +7,16 @@ import { Screen } from '../components/Screen';
 /** Component for Welcome Page */
 interface Props {
   navigation: StackNavigationProp<ModalScreenList>;
+  firstName: string;
 }
 
-const Welcome = ({ navigation }: Props) => {
+const Welcome = ({ navigation, firstName }: Props) => {
   const onPressNextPage = () => navigation.navigate('DataEntries');
 
   return (
     <Screen>
       <StatusBar style="auto" />
-      <Text style={styles.headerText}>Hi, Adriana! You haven't entered any data today yet.</Text>
+      <Text style={styles.headerText}>Hi, {firstName}! You haven't entered any data today yet.</Text>
       <TouchableOpacity style={styles.entryButton}
         onPress={onPressNextPage}>
         <Text style={styles.buttonText}>+  Add Today's Entry</Text>

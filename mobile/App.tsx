@@ -11,7 +11,6 @@ import NavBar from "./components/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import React from 'react';
-import { router } from './router';
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
