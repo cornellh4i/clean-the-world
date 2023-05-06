@@ -1,26 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native'
 import { getApp } from 'firebase/app';
 import { auth } from '../mobile/firebase/firebaseConfig.js';
 import PhoneAuth from './components/PhoneAuth';
 import { useState } from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import DataEntries from "./pages/data-entry";
-import Profile from "./pages/Profile";
 import NavBar from "./components/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import React from 'react';
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [isEnglish, setIsEnglish] = useState(true);
 
   const app = getApp();
   const firebaseConfig = app ? app.options : undefined;
 
   return (
     <NavigationContainer>
-      <NavBar />
+      <NavBar isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
       <PhoneAuth
         config={firebaseConfig}
         auth={auth}
@@ -39,7 +35,7 @@ export default function App() {
       </KeyboardAwareScrollView> */}
     </NavigationContainer>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scrollContainer: {

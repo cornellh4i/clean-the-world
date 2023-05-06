@@ -1,14 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text } from 'react-native'
-import { Screen } from '../components/Screen';
+import { StyleSheet, Text, View } from 'react-native'
+
+interface Props {
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
+}
 
 /** Component for Dummy Page */
-const Dummy = () => {
+const Dummy = ({isEnglish, setIsEnglish} : Props) => {
   return (
-    <Screen>
+    <View>
       <StatusBar style="auto" />
-      <Text style={styles.headerText}>Done!</Text>
-    </Screen>
+      <Text style={styles.headerText}>{isEnglish ? "Done!" : "Terminado!"}</Text>
+    </View>
   );
 };
 

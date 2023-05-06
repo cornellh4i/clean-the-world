@@ -5,15 +5,17 @@ import { IScreenHeaderProps, ScreenHeader } from './ScreenHeader';
 
 interface Props extends IScreenHeaderProps {
   children: ReactNode;
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
 }
 
-export const Screen: React.FC<Props> = ({ children, ...headerProps }) => {
+export const Screen: React.FC<Props> = ({ children, isEnglish, setIsEnglish, ...headerProps }) => {
   const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <>
       <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
-        <ScreenHeader {...headerProps} />
+        <ScreenHeader {...headerProps} isEnglish={isEnglish} setIsEnglish={setIsEnglish} />
         <View style={[styles.screen, { paddingBottom: safeAreaInsets.bottom }]}>
           {children}
         </View>

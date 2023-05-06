@@ -4,8 +4,13 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import SubmissionPopup from './SubmissionPopup';
 import Dummy from '../pages/dummy';
 
+interface Props {
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
+}
+
 /** Component for a data entry */
-const DataEntry = () => {
+const DataEntry = ({ isEnglish, setIsEnglish} : Props) => {
   const [fogNetID, setFogNetID] = useState("");
   const [clusterID, setClusterID] = useState("");
   const [fogNetModel, setFogNetModel] = useState("");
@@ -69,16 +74,16 @@ const DataEntry = () => {
   return (
     <View style={styles.container}>
       {showConfirm ? (
-        <Text style={styles.headerText}>Are you sure this information is correct?</Text>
+        <Text style={styles.headerText}>{isEnglish ? "Are you sure this information is correct?" : "¿Está seguro de que esta información es correcta?"}</Text>
       ) : !complete ? (
-        <Text style={[styles.headerText, { paddingLeft: 105, paddingRight: 105 }]}>New Entry</Text>
+        <Text style={[styles.headerText, { paddingLeft: 105, paddingRight: 105 }]}>{isEnglish ? "New Entry" : "Nueva Entrada"} </Text>
       ) : (
-        <Dummy />
+        <Dummy isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
       )}
       {!complete &&
         <View>
           <View style={styles.inlineContainer}>
-            <Text style={styles.promptText}>Date   </Text>
+            <Text style={styles.promptText}>{isEnglish ? "Date   " : "Fecha   "}</Text>
             <TextInput
               value={date}
               style={[styles.fieldBox, { backgroundColor: editable ? '#ffffff' : '#ececec' }]}
@@ -89,34 +94,34 @@ const DataEntry = () => {
               editable={editable}
             /></View>
           <View style={styles.inlineContainer}>
-            <Text style={styles.promptText}>Fog Net ID #   </Text>
+            <Text style={styles.promptText}>{isEnglish ? "Fog Net ID #   " : "Red de niebla ID #   "}</Text>
             <TextInput
               value={fogNetID}
               style={[styles.fieldBox, { backgroundColor: editable ? '#ffffff' : '#ececec' }]}
-              placeholder="Fog Net ID"
+              placeholder={isEnglish ? "Fog Net ID" : "Red de niebla ID"}
               onChangeText={fogNetID => setFogNetID(fogNetID)}
               editable={editable}
             /></View>
           <View style={styles.inlineContainer}>
-            <Text style={styles.promptText}>Cluster ID #   </Text>
+            <Text style={styles.promptText}>{isEnglish ? "Cluster ID #   " : "Grupo ID #   "}</Text>
             <TextInput
               value={clusterID}
               style={[styles.fieldBox, { backgroundColor: editable ? '#ffffff' : '#ececec' }]}
-              placeholder="Cluster ID"
+              placeholder={isEnglish ? "Cluster ID" : "Grupo ID"}
               onChangeText={clusterID => setClusterID(clusterID)}
               editable={editable}
             /></View>
           <View style={styles.inlineContainer}>
-            <Text style={styles.promptText}>Model Name   </Text>
+            <Text style={styles.promptText}>{isEnglish ? "Model Name   " : "Nombre del Modelo   "}</Text>
             <TextInput
               value={fogNetModel}
               style={[styles.fieldBox, { backgroundColor: editable ? '#ffffff' : '#ececec' }]}
-              placeholder="Model Name"
+              placeholder={isEnglish ? "Model Name" : "Nombre del Modelo"}
               onChangeText={fogNetModel => setFogNetModel(fogNetModel)}
               editable={editable}
             /></View>
           <View style={styles.inlineContainer}>
-            <Text style={styles.promptText}>Water Collected   </Text>
+            <Text style={styles.promptText}>{isEnglish ? "Water Collected   " : "Agua Recolectada   "}</Text>
             <TextInput
               value={waterCollected}
               style={[styles.fieldBox, { backgroundColor: editable ? '#ffffff' : '#ececec' }]}
@@ -133,7 +138,7 @@ const DataEntry = () => {
             onPress={async () => {
               handleShowModal();
             }}>
-            <Text style={styles.buttonText}>Yes</Text>
+            <Text style={styles.buttonText}>{isEnglish ? "Yes" : "Sí"}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, { backgroundColor: '#C4BFFF', margin: 8, marginLeft: 30, marginRight: 30 }]}
             onPress={async () => {
@@ -142,7 +147,7 @@ const DataEntry = () => {
             }}>
             <Text style={styles.buttonText}>No</Text>
           </TouchableOpacity>
-          {modalVisible && <SubmissionPopup />}
+          {modalVisible && <SubmissionPopup isEnglish={isEnglish} setIsEnglish={setIsEnglish} />}
         </View>
       ) : !complete ? (
         <View>
@@ -150,15 +155,15 @@ const DataEntry = () => {
             onPress={async () => {
               try {
                 if (!date.trim()) {
-                  alert("Please Enter Date");
+                  alert(isEnglish ? "Please Enter Date" : "Por favor ingrese La Fecha");
                 } else if (dateIsValid(date) === false) {
-                  alert("Invalid Date" + "\n" + "Make sure date is MM/DD/YYYY");
+                  alert(isEnglish ? "Invalid Date" + "\n" + "Make sure date is MM/DD/YYYY" : "Fecha invalida"  + "\n" + "Asegúrese de que la fecha sea DD/MM/AAAA");
                 } else if (!fogNetID.trim()) {
-                  alert("Please Enter Fog Net ID");
+                  alert(isEnglish ? "Please Enter Fog Net ID" : "Por favor ingrese Red de Niebla ID");
                 } else if (!clusterID.trim()) {
-                  alert("Please Enter Cluster ID");
+                  alert(isEnglish ? "Please Enter Cluster ID" : "Por favor ingrese Grupo ID");
                 } else if (!fogNetModel.trim()) {
-                  alert("Please Enter Model Name");
+                  alert(isEnglish ? "Please Enter Model Name" : "Por favor ingrese Nombre del Modelo");
                 } else if (
                   isNaN(parseFloat(waterCollected)) ||
                   waterCollected.split(".").length > 2
@@ -175,11 +180,11 @@ const DataEntry = () => {
               }
             }}
           >
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>{isEnglish ? "Submit" : "Enviar"}</Text>
           </TouchableOpacity>
         </View>
       ) : (
-        <Text style={styles.buttonText}>Done</Text>
+        <Text style={styles.buttonText}>{isEnglish ? "Done" : "Completado"}</Text>
       )}
     </View>
   );

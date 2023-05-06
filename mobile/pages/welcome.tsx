@@ -8,18 +8,20 @@ import { Screen } from '../components/Screen';
 interface Props {
   navigation: StackNavigationProp<ModalScreenList>;
   firstName: string;
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
 }
 
-const Welcome = ({ navigation, firstName }: Props) => {
+const Welcome = ({ navigation, firstName, isEnglish, setIsEnglish }: Props) => {
   const onPressNextPage = () => navigation.navigate('DataEntries');
 
   return (
-    <Screen>
+    <Screen isEnglish={isEnglish} setIsEnglish={setIsEnglish}>
       <StatusBar style="auto" />
-      <Text style={styles.headerText}>Hi, {firstName}! You haven't entered any data today yet.</Text>
+      <Text style={styles.headerText}>{isEnglish ? "Hi, " + firstName + "! You haven't entered any data today yet." : "Hola, " + firstName + "! Todavía no has introducido ningún dato. "}</Text>
       <TouchableOpacity style={styles.entryButton}
         onPress={onPressNextPage}>
-        <Text style={styles.buttonText}>+  Add Today's Entry</Text>
+        <Text style={styles.buttonText}>{isEnglish ? "+  Add Today's Entry" : "+  Agregar la entrada de hoy"}</Text>
       </TouchableOpacity>
     </Screen >
   );

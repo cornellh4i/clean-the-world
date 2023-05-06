@@ -7,7 +7,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const Tab = createBottomTabNavigator();
 
-const NavBar = () => {
+interface Props {
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
+}
+
+const NavBar = ({isEnglish, setIsEnglish} : Props) => {
   const [firstName, setFirstName] = useState("Adriana");
   interface Props {
     navigation: StackNavigationProp<ModalScreenList>;
@@ -15,13 +20,13 @@ const NavBar = () => {
   
   const DataEntryFlow = (navigation: Props) => {
     return (
-     <DataRouter firstName={firstName}/>
+     <DataRouter firstName={firstName} isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
     );
   };
   
   const ProfileFlow = (navigation: Props) => {
     return (
-     <Profile setUpFirstName={setFirstName} upFirstName={firstName}/>
+     <Profile setUpFirstName={setFirstName} upFirstName={firstName} isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
     );
   };
 

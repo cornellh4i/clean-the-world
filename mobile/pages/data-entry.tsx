@@ -1,15 +1,24 @@
 
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import DataEntry from "../components/DataEntry";
 import { Screen } from '../components/Screen';
 
+
+interface Props {
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
+}
+
 /** Component for Data Entry flow */
-const DataEntries = () => {
+
+const DataEntries = ({ isEnglish, setIsEnglish} : Props) => {
   return (
-    <Screen rightAction="back">
+    <Screen rightAction="back" isEnglish={isEnglish} setIsEnglish={setIsEnglish}>
       <StatusBar style="auto" />
-      <DataEntry />
+      <ScrollView keyboardShouldPersistTaps='handled'>
+        <DataEntry isEnglish={isEnglish} setIsEnglish={setIsEnglish} />
+      </ScrollView>
     </Screen >
   );
 };

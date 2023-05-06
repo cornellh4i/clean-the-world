@@ -7,22 +7,24 @@ import { Screen } from '../components/Screen';
 /** Component for Data Entry flow */
 interface Props {
   navigation: StackNavigationProp<ModalScreenList>;
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
 }
 
-const Home = ({ navigation }: Props) => {
+const Home = ({ navigation, isEnglish, setIsEnglish }: Props) => {
   const onPressLoginPage = () => navigation.navigate('Welcome');
 
   return (
-    <Screen>
+    <Screen isEnglish={isEnglish} setIsEnglish={setIsEnglish}>
       <View style={styles.container}>
         <StatusBar style="auto" />
         <Text style={styles.headerText}> Clean the World</Text>
         <TouchableOpacity style={[styles.authButton, { backgroundColor: '#ffffff' }]}
           onPress={onPressLoginPage}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>{isEnglish ? "Login" : "Iniciar Sesión"}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.authButton, { backgroundColor: '#C4BFFF' }]}>
-          <Text style={styles.buttonText}>Sign Up</Text>
+          <Text style={styles.buttonText}>{isEnglish ? "Sign Up" : "Inscríbete"}</Text>
         </TouchableOpacity>
       </View>
     </Screen >
