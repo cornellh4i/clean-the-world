@@ -1,4 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import Home from './pages/home';
 import Welcome from './pages/welcome';
@@ -20,13 +21,45 @@ export type ModalScreenList = {
   Dummy: undefined;
 };
 
-export const router = () => {
+interface Props {
+  navigation: StackNavigationProp<ModalScreenList>;
+}
+
+interface firstNameProp {
+  firstName: string;
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
+}
+
+
+
+export function DataRouter({ firstName, isEnglish, setIsEnglish }: firstNameProp) {
+  const WelcomePage = ({navigation}: Props) => {
+    return (
+     <Welcome navigation = {navigation} firstName={firstName} isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
+    );
+  };
+  const HomePage = ({navigation}: Props) => {
+    return (
+      <Home navigation = {navigation} isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
+    );
+  };
+  const DataEntriesPage = () => {
+    return (
+      <DataEntries isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
+    );
+  };
+  const DummyPage = () => {
+    return (
+      <Dummy isEnglish={isEnglish} setIsEnglish={setIsEnglish}/>
+    );
+  };
   return (
     <Root.Navigator screenOptions={{ headerShown: false }}>
-      <Root.Screen name="Home" component={Home} />
-      <Root.Screen name="Welcome" component={Welcome} />
-      <ModalStack.Screen name="DataEntries" component={DataEntries} />
-      <ModalStack.Screen name="Dummy" component={Dummy} />
+      <Root.Screen name="Home" component={HomePage} />
+      <Root.Screen name="Welcome" component={WelcomePage} />
+      <ModalStack.Screen name="DataEntries" component={DataEntriesPage} />
+      <ModalStack.Screen name="Dummy" component={DummyPage} />
     </Root.Navigator>
   );
 };
