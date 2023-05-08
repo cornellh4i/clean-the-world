@@ -15,7 +15,7 @@ const SubmissionPopup = ({ isEnglish, setIsEnglish} : Props) => {
         <View style={styles.centeredView}>
           <Text style={styles.modalText}>{isEnglish ? "Entry Submitted" : "Entrada enviada"}</Text>
           <Image style={styles.checkIcon} source={checkboxImage} />
-          <Text style={[styles.modalText, { top: '-15%' }]}>{isEnglish ? "You've now logged 1,458 L total!" : "¡Ya has registrado 1.458 L en total!"}</Text>
+          <Text style={[styles.modalText, { top: '-15%' }]}>{isEnglish ? "You've now logged 1,458 L total!" : "¡Ya has recogido 1.458 L en total!"}</Text>
         </View>
       </Modal>
     </View>

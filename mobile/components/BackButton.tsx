@@ -4,13 +4,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   onPress: () => void;
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
+  isEnglish: boolean;
 }
 
-const BackButton = ({ onPress }: Props) => (
+const BackButton = ({ onPress, isEnglish, setIsEnglish }: Props) => (
   <TouchableOpacity onPress={onPress} hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}>
     <View style={styles.icon}>
       <Icon name="chevron-back" size={28} color="#ffffff" />
-      <Text style={styles.backText}>Back</Text>
+      <Text style={styles.backText}>{isEnglish ? "Back" : "Atrás"}</Text>
     </View>
   </TouchableOpacity>
 );

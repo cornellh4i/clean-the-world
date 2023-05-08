@@ -11,7 +11,7 @@ const Dummy = ({isEnglish, setIsEnglish} : Props) => {
   return (
     <View>
       <StatusBar style="auto" />
-      <Text style={styles.headerText}>{isEnglish ? "Done!" : "Terminado!"}</Text>
+      <Text style={styles.headerText}>{isEnglish ? "Done!" : "¡Terminado!"}</Text>
     </View>
   );
 };
