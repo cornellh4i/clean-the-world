@@ -18,7 +18,7 @@ const Welcome = ({ navigation, firstName, isEnglish, setIsEnglish }: Props) => {
   return (
     <Screen isEnglish={isEnglish} setIsEnglish={setIsEnglish}>
       <StatusBar style="auto" />
-      <Text style={styles.headerText}>{isEnglish ? "Hi, " + firstName + "! You haven't entered any data today yet." : "Hola, " + firstName + "! Todavía no has introducido ningún dato. "}</Text>
+      <Text style={styles.headerText}>{isEnglish ? "Hi, " + firstName + "! You haven't entered any data today yet." : "¡Hola, " + firstName + "! Todavía no has introducido ningún dato. "}</Text>
       <TouchableOpacity style={styles.entryButton}
         onPress={onPressNextPage}>
         <Text style={styles.buttonText}>{isEnglish ? "+  Add Today's Entry" : "+  Agregar la entrada de hoy"}</Text>

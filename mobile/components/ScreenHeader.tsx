@@ -22,7 +22,7 @@ export const ScreenHeader: React.FC<IScreenHeaderProps> = ({
     if (rightAction === 'back') {
       return (
         <View style={styles.leftAction}>
-          <BackButton onPress={onPressBackHandle} />
+          <BackButton onPress={onPressBackHandle} isEnglish={isEnglish} setIsEnglish={setIsEnglish} />
         </View>
       );
     }

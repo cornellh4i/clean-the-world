@@ -24,7 +24,7 @@ const Home = ({ navigation, isEnglish, setIsEnglish }: Props) => {
           <Text style={styles.buttonText}>{isEnglish ? "Login" : "Iniciar Sesión"}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.authButton, { backgroundColor: '#C4BFFF' }]}>
-          <Text style={styles.buttonText}>{isEnglish ? "Sign Up" : "Inscríbete"}</Text>
+          <Text style={styles.buttonText}>{isEnglish ? "Sign Up" : "Regístrate"}</Text>
         </TouchableOpacity>
       </View>
     </Screen >
